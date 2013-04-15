@@ -1,3 +1,6 @@
-This is an 8-bit CPU built for academic purposes. 
+This is an 8-bit, dual-pipeline CPU built for academic purposes. 
 
-Created by Bain Syrowik, Jade Lacosse, and Tri Huynh
+
+VHDL and schematics copyright Bain Syrowik, Jade Lacosse, and Tri Huynh
+
+Instruction_Set.pdf copyright Dr. Nikitas Dimopoulos
