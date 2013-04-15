@@ -37,75 +37,75 @@ end Memory;
 architecture Behavioral of Memory is
 	type mem_array is array (integer range 0 to 127) of std_logic_vector(7 downto 0);
 	signal ram : mem_array := (
-
-	
-		02 =>	x"30",  -- loadimm	r0,0F							#start#  
-		03 =>	x"0F",  -- 
-		-- nop
-		09 =>	x"20",  -- store		r0,add_nand
-		10 =>	x"0F",  -- 
-		11 =>	x"30",  -- loadimm	r0,7
-		12 =>	x"07",  -- 
-		-- nop
-		-- 14 =>  		counter
-		-- 15 =>  		add_nand
-		-- nop
-		18 =>	x"20",  -- store		r0,counter
-		19 =>	x"0E",  -- 
-		20 =>	x"30",  -- loadimm 	r0,FF
-		21 =>	x"FF",  -- 
-		22 =>	x"34",  -- loadimm	r1,FF
-		23 =>	x"FF",  -- 
-		-- nop
-		29 =>	x"70",  -- shr			r0  							#loop# 
-		30 =>	x"64",  -- shl			r1
-		-- nop
-		35 =>	x"DC",  -- mov			r3,r0 	
-		36 =>	x"10",  -- load		r0,add_nand
-		37 =>	x"0F",  -- 
-		-- nop
-		43 =>	x"70",  -- shr			r0
-		49 =>	x"20",  -- store		r0,add_nand
-		50 =>	x"0F",  -- 
-		51 =>	x"D3",  -- mov			r0,r3	
-		-- nop
-		58 =>	x"38",  -- loadimm	r2,nand
-		59 =>	x"4B",  -- 
-		-- nop
-		65 =>	x"96",  -- brz											nand
-		66 =>	x"41",  -- add			r0,r1   
-		67 =>	x"38",  -- loadimm	r2,out_add_nand
-		68 =>	x"4C",  -- 
-		-- nop
-		74 =>	x"92",  -- br											out_add_nand
-		75 =>	x"81",  -- nand		r0,r1              		#nand#
-		-- nop
-		81 =>	x"C0",  -- out			r0
-		82 =>	x"10",  -- load		r0,counter
-		83 =>	x"0E",  -- 
-		84 =>	x"D9",  -- mov			r2,r1		
-		85 =>	x"34",  -- loadimm	r1,1
-		86 =>	x"01",  -- 
-		-- nop
-		92 =>	x"51",  -- sub			r0,r1
-		-- nop
-		98 =>	x"20",  -- store		r0,counter
-		99 =>	x"0E",  -- 
-		100 => x"D6", -- mov			r1,r2	
-		101 => x"38", -- loadimm	r2,out:
-		102 => x"76", -- 
-		-- nop
-		106 => x"D3", -- mov			r0,r3	
-		-- nop
-		109 => x"9A", -- brn											out
-		110 => x"38", -- loadimm	r2,loop
-		111 => x"1D", -- 
-		-- nop
-		117 => x"92", -- br			loop
-		118 => x"38", -- loadimm	r2,start     				#out#
-		119 => x"02", -- 
-		-- nop
-		125 => x"92", -- br											start
+--
+--	
+--		02 =>	x"30",  -- loadimm	r0,0F							#start#  
+--		03 =>	x"0F",  -- 
+--		-- nop
+--		09 =>	x"20",  -- store		r0,add_nand
+--		10 =>	x"0F",  -- 
+--		11 =>	x"30",  -- loadimm	r0,7
+--		12 =>	x"07",  -- 
+--		-- nop
+--		-- 14 =>  		counter
+--		-- 15 =>  		add_nand
+--		-- nop
+--		18 =>	x"20",  -- store		r0,counter
+--		19 =>	x"0E",  -- 
+--		20 =>	x"30",  -- loadimm 	r0,FF
+--		21 =>	x"FF",  -- 
+--		22 =>	x"34",  -- loadimm	r1,FF
+--		23 =>	x"FF",  -- 
+--		-- nop
+--		29 =>	x"70",  -- shr			r0  							#loop# 
+--		30 =>	x"64",  -- shl			r1
+--		-- nop
+--		35 =>	x"DC",  -- mov			r3,r0 	
+--		36 =>	x"10",  -- load		r0,add_nand
+--		37 =>	x"0F",  -- 
+--		-- nop
+--		43 =>	x"70",  -- shr			r0
+--		49 =>	x"20",  -- store		r0,add_nand
+--		50 =>	x"0F",  -- 
+--		51 =>	x"D3",  -- mov			r0,r3	
+--		-- nop
+--		58 =>	x"38",  -- loadimm	r2,nand
+--		59 =>	x"4B",  -- 
+--		-- nop
+--		65 =>	x"96",  -- brz											nand
+--		66 =>	x"41",  -- add			r0,r1   
+--		67 =>	x"38",  -- loadimm	r2,out_add_nand
+--		68 =>	x"4C",  -- 
+--		-- nop
+--		74 =>	x"92",  -- br											out_add_nand
+--		75 =>	x"81",  -- nand		r0,r1              		#nand#
+--		-- nop
+--		81 =>	x"C0",  -- out			r0
+--		82 =>	x"10",  -- load		r0,counter
+--		83 =>	x"0E",  -- 
+--		84 =>	x"D9",  -- mov			r2,r1		
+--		85 =>	x"34",  -- loadimm	r1,1
+--		86 =>	x"01",  -- 
+--		-- nop
+--		92 =>	x"51",  -- sub			r0,r1
+--		-- nop
+--		98 =>	x"20",  -- store		r0,counter
+--		99 =>	x"0E",  -- 
+--		100 => x"D6", -- mov			r1,r2	
+--		101 => x"38", -- loadimm	r2,out:
+--		102 => x"76", -- 
+--		-- nop
+--		106 => x"D3", -- mov			r0,r3	
+--		-- nop
+--		109 => x"9A", -- brn											out
+--		110 => x"38", -- loadimm	r2,loop
+--		111 => x"1D", -- 
+--		-- nop
+--		117 => x"92", -- br			loop
+--		118 => x"38", -- loadimm	r2,start     				#out#
+--		119 => x"02", -- 
+--		-- nop
+--		125 => x"92", -- br											start
 			
 	
 	
@@ -177,38 +177,28 @@ architecture Behavioral of Memory is
 --		113 => x"11",
 --		114 => x"22",
 		
---
---		0  => "10110000", -- IN to R0
-----		0  => "00110000", -- LOADIMM to R0
---	--	1  => "00001001", -- 9
-----		1  => "00100001", -- 33
---		2  => "00110100", -- LOADIMM to R1
---		3  => "00000000", -- 0
---		4  => "00111100", -- LOADIMM to R3
---		5  => "00000110", -- 6
---		6  => "00111000", -- LOADIMM to R2
---		7  => "00000001", -- 1
---		8  => "01110000", -- SHR R0
---		9  => "01000110", -- ADD R1 R2
---		10 => "01011000", -- SUB R2 R0
---		--NOP
---		12 =>	"11000000", -- OUT R0
---		13 => "10011011", -- BR.N R3
---		14 => "10010111", -- BR.Z R3
---		15 => "00111000", -- LOADIMM to R2
---		16 => "00000001", -- 1
---		-- nop
---		18 => "01010110", -- SUB R1 R2
---	--	-- nop
---	--	20 => "00100100", -- STORE R1
---	--	21 => "00100000", -- 32
---		20 => "11000100", -- out R1
---		
---	--	while(1)
---		22 => "00111100", -- LOADIMM to R3
---		23 => "00011000", -- 22
---		-- nop
---		25 => "10010011", -- loop forever
+
+		0  => "10110000", -- IN to R0
+		1  => "00110100", -- LOADIMM to R1
+		2  => "00000000", -- 0
+		3  => "00111100", -- LOADIMM to R3
+		4  => "00000101", -- 5
+		5  => "00111000", -- LOADIMM to R2
+		6  => "00000001", -- 1
+		7  => "01110000", -- SHR R0
+		8  => "01000110", -- ADD R1 R2
+		9 => "01011000", -- SUB R2 R0
+		10 =>	"11000000", -- OUT R0
+		11 => "10011011", -- BR.N R3
+		12 => "10010111", -- BR.Z R3
+		13 => "00111000", -- LOADIMM to R2
+		14 => "00000001", -- 1
+		15 => "01010110", -- SUB R1 R2
+		16 => "11000100", -- out R1
+		--	while(1)
+		17 => "00111100", -- LOADIMM to R3
+		18 => "00010101", -- 19
+		19 => "10010011", -- loop forever
 		
 		others =>  "00000000"
 	);
